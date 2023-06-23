@@ -41,8 +41,7 @@ namespace Employee_System.Models.Models
 
         public DateTime DateOfBirth { get; set; }
 
-        public int DepartmentId { get; set; }
-        public Department Department { get; set; }
-
+        [ForeignKey("Department")]
+        public int? DepartmentId { get; set; }
     }
 }
