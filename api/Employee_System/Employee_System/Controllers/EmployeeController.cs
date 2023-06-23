@@ -19,14 +19,14 @@ namespace Employee_System.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployees()
         {
-            var result = _employeeService.GetEmployees();
+            var result = await _employeeService.GetEmployees();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            var result = _employeeService.GetEmployee(id);
+            var result = await _employeeService.GetEmployee(id);
             if (result == null)
             {
                 return NotFound();
@@ -37,14 +37,14 @@ namespace Employee_System.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Employee>>> AddEmployee(Employee employee)
         {
-            var result = _employeeService.AddEmployee(employee);
+            var result = await _employeeService.AddEmployee(employee);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<List<Employee>>> UpdateEmployee(Employee employee)
         {
-            var result = _employeeService.UpdateEmployee(employee.Id, employee);
+            var result = await _employeeService.UpdateEmployee(employee.Id, employee);
             if (result == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace Employee_System.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Department>> DeleteDepartment (int id)
         {
-            var result = _employeeService.DeleteEmployee(id);
+            var result = await _employeeService.DeleteEmployee(id);
             return Ok(result);
         }
     }

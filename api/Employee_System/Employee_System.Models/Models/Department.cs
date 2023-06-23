@@ -15,7 +15,7 @@ namespace Employee_System.Models.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please enter the department name")]
-        [MinLength(3)]
+        [MinLength(2)]
         [MaxLength(64)]
         public string Name { get; set; } = String.Empty;
     }
