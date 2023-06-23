@@ -1,5 +1,7 @@
-﻿using Employee_System.Models.Models;
+﻿using Employee_System.Migrations;
+using Employee_System.Models.Models;
 using Employee_System.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,54 +12,69 @@ namespace Employee_System.Services.Services
 {
     public class DepartmentService : IDepartmentService
     {
-        private List<Department> departments = new List<Department>()
-        {
-            new Department{ Id = 1, Name = "IT"},
-            new Department{ Id = 2, Name = "HR"},
-            new Department{ Id = 3, Name = "Finance"},
-            new Department{ Id = 4, Name = "Sales"}
-        };
+        private readonly CompanyDbContext _dbContext;
 
-        public List<Department> AddDepartment(Department department)
+        public DepartmentService(CompanyDbContext context)
         {
-            departments.Add(department);
-            return departments;
+            _dbContext = context;
         }
 
-        public List<Department> DeleteDepartment(int id)
+        //private List<Department> departments = new List<Department>()
+        //{
+        //    new Department{ Id = 1, Name = "IT"},
+        //    new Department{ Id = 2, Name = "HR"},
+        //    new Department{ Id = 3, Name = "Finance"},
+        //    new Department{ Id = 4, Name = "Sales"}
+        //};
+
+        public async Task<List<Department>> AddDepartment(Department department)
         {
-            var result = departments.Find(x => x.Id == id);
+            await _dbContext.Departments.AddAsync(department);
+            await _dbContext.SaveChangesAsync();
+
+            return await _dbContext.Departments.ToListAsync();
+        }
+
+        public async Task<List<Department>> DeleteDepartment(int id)
+        {
+            var result = await _dbContext.Departments.FindAsync(id);
             if(result == null)
             {
                 return null;
             }
 
-            departments.Remove(result);
-            return departments;
+            _dbContext.Remove(result);
+            await _dbContext.SaveChangesAsync();
+            return await _dbContext.Departments.ToListAsync();
         }
 
-        public Department GetDepartment(int id)
+        public async Task<Department> GetDepartment(int id)
         {
-            var result = departments.Find(x => x.Id == id);
+            var result = await _dbContext.Departments.FindAsync(id);
+            if (result == null)
+            {
+                return null;
+            }
             return result;
         }
 
-        public List<Department> GetDepartments()
+        public async Task<List<Department>> GetDepartments()
         {
-            var result = departments;
+            var result = await _dbContext.Departments.ToListAsync();
             return result;
         }
 
-        public List<Department> UpdateDepartment(int id, Department department)
+        public async Task<List<Department>> UpdateDepartment(int id, Department department)
         {
-            var result = departments.Find(x =>x.Id == id);
+            var result = await _dbContext.Departments.FindAsync(id);
             if (result == null)
             {
                 return null;
             }
 
             result.Name = department.Name;
-            return departments;
+            await _dbContext.SaveChangesAsync();
+            return await _dbContext.Departments.ToListAsync();
         }
     }
 }

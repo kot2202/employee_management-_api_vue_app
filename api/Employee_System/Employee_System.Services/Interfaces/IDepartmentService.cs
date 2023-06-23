@@ -9,10 +9,10 @@ namespace Employee_System.Services.Interfaces
 {
     public interface IDepartmentService
     {
-        List<Department> GetDepartments();
-        Department GetDepartment(int id);
-        List<Department> AddDepartment(Department department);
-        List<Department> UpdateDepartment(int id, Department department);
-        List<Department> DeleteDepartment(int id);
+        Task<List<Department>> GetDepartments();
+        Task<Department> GetDepartment(int id);
+        Task <List<Department>> AddDepartment(Department department);
+        Task <List<Department>> UpdateDepartment(int id, Department department);
+        Task <List<Department>> DeleteDepartment(int id);
     }
 }

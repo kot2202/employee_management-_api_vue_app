@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_System.Models", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_System.Services", "Employee_System.Services\Employee_System.Services.csproj", "{6F9F7061-42CC-4909-9FFF-18BAD328E17F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_System.Migrations", "Employee_System.Migrations\Employee_System.Migrations.csproj", "{3532031E-1C2E-4EC6-88C4-27DDDC164767}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6F9F7061-42CC-4909-9FFF-18BAD328E17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F9F7061-42CC-4909-9FFF-18BAD328E17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F9F7061-42CC-4909-9FFF-18BAD328E17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3532031E-1C2E-4EC6-88C4-27DDDC164767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3532031E-1C2E-4EC6-88C4-27DDDC164767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3532031E-1C2E-4EC6-88C4-27DDDC164767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3532031E-1C2E-4EC6-88C4-27DDDC164767}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

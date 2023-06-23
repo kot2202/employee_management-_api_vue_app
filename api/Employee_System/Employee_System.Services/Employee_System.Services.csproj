@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Employee_System.Migrations\Employee_System.Migrations.csproj" />
     <ProjectReference Include="..\Employee_System.Models\Employee_System.Models.csproj" />
   </ItemGroup>
 

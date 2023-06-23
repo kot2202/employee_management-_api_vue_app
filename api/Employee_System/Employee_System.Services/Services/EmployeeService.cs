@@ -1,5 +1,7 @@
-﻿using Employee_System.Models.Models;
+﻿using Employee_System.Migrations;
+using Employee_System.Models.Models;
 using Employee_System.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,64 +12,77 @@ namespace Employee_System.Services.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        private List<Employee> employees = new List<Employee>()
-        {
-            new Employee{
-                Id = 1,
-                FirstName = "John",
-                LastName = "Doe",
-                PhoneNumber = "123456789",
-                Address = "123 Main St",
-                Email = "john@doe.com",
-                DateOfBirth = new DateTime(1990, 1, 1),
-                DepartmentId = 1
-            },
-            new Employee
-            {
-                Id = 2,
-                FirstName = "Jane",
-                LastName = "Doe",
-                PhoneNumber = "987654321",
-                Address = "321 Main St",
-                Email = "jane@doe.com",
-                DateOfBirth = new DateTime(1995, 1, 1),
-                DepartmentId = 2
-            }
-        };
+        private readonly CompanyDbContext _dbContext;
 
-        public List<Employee> AddEmployee(Employee employee)
+        public EmployeeService(CompanyDbContext context)
         {
-            employees.Add(employee);
-            return employees;
+            _dbContext = context;
         }
 
-        public List<Employee> DeleteEmployee(int id)
+        //private List<Employee> employees = new List<Employee>()
+        //{
+        //    new Employee{
+        //        Id = 1,
+        //        FirstName = "John",
+        //        LastName = "Doe",
+        //        PhoneNumber = "123456789",
+        //        Address = "123 Main St",
+        //        Email = "john@doe.com",
+        //        DateOfBirth = new DateTime(1990, 1, 1),
+        //        DepartmentId = 1
+        //    },
+        //    new Employee
+        //    {
+        //        Id = 2,
+        //        FirstName = "Jane",
+        //        LastName = "Doe",
+        //        PhoneNumber = "987654321",
+        //        Address = "321 Main St",
+        //        Email = "jane@doe.com",
+        //        DateOfBirth = new DateTime(1995, 1, 1),
+        //        DepartmentId = 2
+        //    }
+        //};
+
+        public async Task<List<Employee>> AddEmployee(Employee employee)
         {
-            var result = employees.Find(x =>x.Id == id);
-            if (result == null)
+            await _dbContext.Employees.AddAsync(employee);
+            await _dbContext.SaveChangesAsync();
+            return await _dbContext.Employees.ToListAsync();
+        }
+
+        public async Task<List<Employee>> DeleteEmployee(int id)
+        {
+            var result = await _dbContext.Employees.FindAsync(id);
+            if(result == null)
             {
                 return null;
             }
 
-            employees.Remove(result);
-            return employees;
+            _dbContext.Remove(result);
+            await _dbContext.SaveChangesAsync();
+            return await _dbContext.Employees.ToListAsync();
         }
 
-        public Employee GetEmployee(int id)
+        public async Task<Employee> GetEmployee(int id)
         {
-            var result = employees.Find(x => x.Id == id);
+            var result = await _dbContext.Employees.FindAsync(id);
+            if (result == null)
+            {
+                return null;
+            }
             return result;
         }
 
-        public List<Employee> GetEmployees()
+        public async Task<List<Employee>> GetEmployees()
         {
-            var result = employees;
+            var result = await _dbContext.Employees.ToListAsync();
             return result;
         }
 
-        public List<Employee> UpdateEmployee(int id, Employee employee)
+        public async Task<List<Employee>> UpdateEmployee(int id, Employee employee)
         {
-            var result = employees.Find(x => x.Id == id);
+            var result = await _dbContext.Employees.FindAsync(id);
             if (result == null)
             {
                 return null;
@@ -81,7 +96,9 @@ namespace Employee_System.Services.Services
             result.DateOfBirth = employee.DateOfBirth;
             result.DepartmentId = employee.DepartmentId;
             result.DateOfJoin = employee.DateOfJoin;
-            return employees;
+
+            await _dbContext.SaveChangesAsync();
+            return await _dbContext.Employees.ToListAsync();
         }
     }
 }
