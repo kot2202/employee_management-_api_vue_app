@@ -11,4 +11,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Employee_System.Services\Employee_System.Services.csproj" />
+  </ItemGroup>
+
 </Project>
