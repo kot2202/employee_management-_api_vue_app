@@ -35,8 +35,8 @@ namespace Employee_System.Migrations.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    DateOfJoin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateOfJoin = table.Column<DateTime>(type: "nvarchar(max)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "nvarchar(max)", nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

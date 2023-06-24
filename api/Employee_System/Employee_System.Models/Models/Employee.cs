@@ -37,9 +37,9 @@ namespace Employee_System.Models.Models
         [MaxLength(64)]
         public string Email { get; set; } = String.Empty;
 
-        public DateTime DateOfJoin { get; set; } = DateTime.UtcNow;
+        public string? DateOfJoin { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public string? DateOfBirth { get; set; }
 
         [ForeignKey("Department")]
         public int? DepartmentId { get; set; }

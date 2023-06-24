@@ -1,4 +1,5 @@
 const routes=[
+    {path: '/', redirect: '/home'},
     {path: '/home', component: home},
     {path: '/employee', component: employee},
     {path: '/department', component: department},

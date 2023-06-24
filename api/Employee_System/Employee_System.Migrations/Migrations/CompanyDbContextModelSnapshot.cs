@@ -53,11 +53,11 @@ namespace Employee_System.Migrations.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DateOfBirth")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfJoin")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DateOfJoin")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");

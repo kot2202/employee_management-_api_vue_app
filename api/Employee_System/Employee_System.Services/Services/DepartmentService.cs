@@ -19,14 +19,6 @@ namespace Employee_System.Services.Services
             _dbContext = context;
         }
 
-        //private List<Department> departments = new List<Department>()
-        //{
-        //    new Department{ Id = 1, Name = "IT"},
-        //    new Department{ Id = 2, Name = "HR"},
-        //    new Department{ Id = 3, Name = "Finance"},
-        //    new Department{ Id = 4, Name = "Sales"}
-        //};
-
         public async Task<List<Department>> AddDepartment(Department department)
         {
             await _dbContext.Departments.AddAsync(department);

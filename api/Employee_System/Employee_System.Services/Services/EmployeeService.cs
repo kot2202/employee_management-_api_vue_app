@@ -19,31 +19,6 @@ namespace Employee_System.Services.Services
             _dbContext = context;
         }
 
-        //private List<Employee> employees = new List<Employee>()
-        //{
-        //    new Employee{
-        //        Id = 1,
-        //        FirstName = "John",
-        //        LastName = "Doe",
-        //        PhoneNumber = "123456789",
-        //        Address = "123 Main St",
-        //        Email = "john@doe.com",
-        //        DateOfBirth = new DateTime(1990, 1, 1),
-        //        DepartmentId = 1
-        //    },
-        //    new Employee
-        //    {
-        //        Id = 2,
-        //        FirstName = "Jane",
-        //        LastName = "Doe",
-        //        PhoneNumber = "987654321",
-        //        Address = "321 Main St",
-        //        Email = "jane@doe.com",
-        //        DateOfBirth = new DateTime(1995, 1, 1),
-        //        DepartmentId = 2
-        //    }
-        //};
-
         public async Task<List<Employee>> AddEmployee(Employee employee)
         {
             await _dbContext.Employees.AddAsync(employee);
